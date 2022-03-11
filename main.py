@@ -140,7 +140,7 @@ def download_new_start_lists(selenium_driver, competition_name):
     WebDriverWait(selenium_driver, CONNECTION_TIMEOUT).until(
         ec.presence_of_element_located((By.ID, "ctl00_ContentPlaceHolder1_rgEvents_ctl00__0"))
     )
-    time.sleep(5)
+    time.sleep(10)
     competitions_table = selenium_driver.find_element_by_id("ctl00_ContentPlaceHolder1_rgEvents_ctl00")
     for row in competitions_table.find_elements_by_css_selector('tr'):
         for cell in row.find_elements_by_tag_name('td'):
@@ -211,9 +211,9 @@ dotenv_file = dotenv.find_dotenv()
 
 GUEST_START_NUMBER = get_inital_guest_start_number(dotenv_file)
 
-MULKA_CLOUD_URL = "https://test.mulka2.com"
+# MULKA_CLOUD_URL = "https://test.mulka2.com"
 
-# MULKA_CLOUD_URL = "https://jp.mulka2.com:8443"
+MULKA_CLOUD_URL = "https://jp.mulka2.com:8443"
 
 MULKA_EVENT_ID = "153160"
 
@@ -245,7 +245,7 @@ chrome_options.add_experimental_option("prefs", chrome_prefs)
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-sh-usage")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
